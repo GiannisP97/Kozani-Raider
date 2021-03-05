@@ -22,6 +22,7 @@ public class characterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	private Animator animator;
 
 	private bool jump = false;
 
@@ -39,7 +40,7 @@ public class characterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+		animator = GetComponent<Animator>();
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
@@ -60,6 +61,10 @@ public class characterController2D : MonoBehaviour
 	
 		float Horizontal_movement = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
 
+		if(m_Rigidbody2D.velocity.magnitude==0){
+			animator.SetInteger("State",0);
+		}
+
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -68,6 +73,7 @@ public class characterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
+				animator.SetInteger("State",0);
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
@@ -94,7 +100,7 @@ public class characterController2D : MonoBehaviour
 				
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
+			animator.SetInteger("State",2);
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
 			{
@@ -114,6 +120,7 @@ public class characterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			//animator.SetInteger("State",1);
 		}
 	}
 
