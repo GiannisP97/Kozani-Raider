@@ -25,6 +25,7 @@ public class characterController2D : MonoBehaviour
 	private Animator animator;
 
 	private bool jump = false;
+	private float Horizontal_movement;
 
 	[Header("Events")]
 	[Space]
@@ -48,6 +49,16 @@ public class characterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 	}
 	void Update(){
+
+		Horizontal_movement = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+
+		if(Horizontal_movement!=0 && m_Grounded)
+			animator.SetInteger("State",2);
+		else if(!m_Grounded)
+			animator.SetInteger("State",1);
+		else
+			animator.SetInteger("State",0);
+
         if(Input.GetKeyDown(KeyCode.Space)){
             //Debug.Log("Space Pressed");
             jump = true;
@@ -59,7 +70,7 @@ public class characterController2D : MonoBehaviour
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 	
-		float Horizontal_movement = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+		
 
 		if(m_Rigidbody2D.velocity.magnitude==0){
 			animator.SetInteger("State",0);
@@ -73,7 +84,6 @@ public class characterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
-				animator.SetInteger("State",0);
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
@@ -100,7 +110,7 @@ public class characterController2D : MonoBehaviour
 				
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-			animator.SetInteger("State",2);
+			
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
 			{
