@@ -158,7 +158,7 @@ public class characterController2D : MonoBehaviour
             this.GetComponent<AutoScroller>().scrolling = true;
         }
 		if(other.gameObject.name=="deathTrigger"){
-			lifes--;
+			GetComponent<Health>().health--;
 			transform.position = position_before_jump;
 		}
     }
