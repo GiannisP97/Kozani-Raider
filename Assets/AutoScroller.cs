@@ -6,7 +6,7 @@ public class AutoScroller : MonoBehaviour
 {  
     public float speed = 1;
     public float fixing_speed_y = 1;
-    public Transform camera;
+    private Transform camera;
     public bool scrolling = false;
 
 
@@ -15,14 +15,14 @@ public class AutoScroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        camera = Camera.main.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         float dist = this.transform.position.y - camera.position.y;
-        if(Mathf.Abs(dist)>=0.5 && camera.position.y>=0 && adj){
+        if(Mathf.Abs(dist)>=0.8 && camera.position.y>=0 && adj){
             camera.position = camera.position + new Vector3(0,dist*Time.deltaTime* fixing_speed_y,0);
         }
         

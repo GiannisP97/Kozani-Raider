@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,9 +36,6 @@ public class characterController2D : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
-
 	private Vector3 position_before_jump = new Vector3();
 
 	private void Awake()
@@ -48,8 +45,6 @@ public class characterController2D : MonoBehaviour
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
-		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
 	}
 	void Update(){
 
@@ -158,8 +153,12 @@ public class characterController2D : MonoBehaviour
             this.GetComponent<AutoScroller>().scrolling = true;
         }
 		if(other.gameObject.name=="deathTrigger"){
-			GetComponent<Health>().health--;
+			this.GetComponent<Health>().health--;
 			transform.position = position_before_jump;
+		}
+		if(other.tag=="book"){
+			this.GetComponent<Books>().books++;
+			Destroy(other.gameObject);
 		}
     }
 }
