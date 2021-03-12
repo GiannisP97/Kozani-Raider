@@ -15,6 +15,7 @@ public class characterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
+	public int lifes = 3;
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -37,6 +38,8 @@ public class characterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
+
+	private Vector3 position_before_jump = new Vector3();
 
 	private void Awake()
 	{
@@ -129,6 +132,7 @@ public class characterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
+			position_before_jump = this.transform.position;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			//animator.SetInteger("State",1);
 		}
@@ -153,5 +157,9 @@ public class characterController2D : MonoBehaviour
         if(other.GetComponent<startgame>()!=null){
             this.GetComponent<AutoScroller>().scrolling = true;
         }
+		if(other.gameObject.name=="deathTrigger"){
+			lifes--;
+			transform.position = position_before_jump;
+		}
     }
 }

@@ -19,7 +19,7 @@ public class AutoScroller : MonoBehaviour
     void Update()
     {
         float dist = this.transform.position.y - camera.position.y;
-        if(Mathf.Abs(dist)>1){
+        if(Mathf.Abs(dist)>1 && transform.position.y>0){
             camera.position = camera.position + new Vector3(0,dist*Time.deltaTime* fixing_speed_y,0);
         }
         if(scrolling)
