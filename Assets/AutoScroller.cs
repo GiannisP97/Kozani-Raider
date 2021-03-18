@@ -6,6 +6,7 @@ public class AutoScroller : MonoBehaviour
 {  
     public float speed = 1;
     public float fixing_speed_y = 1;
+    public float fixing_speed_x = 1;
     private Transform camera;
     public bool scrolling = false;
 
@@ -22,8 +23,16 @@ public class AutoScroller : MonoBehaviour
     void Update()
     {
         float dist = this.transform.position.y - camera.position.y;
+
+        float dist1= this.transform.position.x - camera.position.x;
+
+
         if(Mathf.Abs(dist)>=0.8 && camera.position.y>=0 && adj){
             camera.position = camera.position + new Vector3(0,dist*Time.deltaTime* fixing_speed_y,0);
+        }
+
+        if(Mathf.Abs(dist1)>0.1){
+            camera.position = camera.position + new Vector3(dist1*Time.deltaTime* fixing_speed_x,0,0);
         }
         
         if(camera.position.y<0){

@@ -15,6 +15,7 @@ public class characterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
+
 	public int lifes = 3;
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -27,6 +28,8 @@ public class characterController2D : MonoBehaviour
 
 	private bool jump = false;
 	private float Horizontal_movement;
+
+	private Transform TeleportTo;
 
 	[Header("Events")]
 	[Space]
@@ -61,6 +64,11 @@ public class characterController2D : MonoBehaviour
             //Debug.Log("Space Pressed");
             jump = true;
         }
+
+		if(Input.GetKeyDown(KeyCode.E) && TeleportTo!=null)
+		{
+			transform.position = TeleportTo.position;
+		}
 	}
 
 	private void FixedUpdate()
@@ -160,5 +168,20 @@ public class characterController2D : MonoBehaviour
 			this.GetComponent<Books>().books++;
 			Destroy(other.gameObject);
 		}
+
+		if(other.GetComponent<Teleport>()!=null){
+			GetComponent<setText>().setmessage("Press E to Teleport");
+
+			if(other.GetComponent<Teleport>().teleporter!=null){
+				TeleportTo = other.GetComponent<Teleport>().teleporter;
+			}
+		}
     }
+
+	private void OnTriggerExit2D(Collider2D other){
+		if(other.GetComponent<Teleport>()!=null){
+			GetComponent<setText>().setmessage("");
+			TeleportTo = null;
+		}
+	}
 }
