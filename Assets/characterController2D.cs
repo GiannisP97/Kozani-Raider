@@ -30,6 +30,9 @@ public class characterController2D : MonoBehaviour
 	private float Horizontal_movement;
 
 	private Transform TeleportTo;
+	private bool start_invicible;
+
+	private IEnumerator coroutine;
 
 	[Header("Events")]
 	[Space]
@@ -68,6 +71,7 @@ public class characterController2D : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.E) && TeleportTo!=null)
 		{
 			transform.position = TeleportTo.position;
+			Camera.main.transform.position = new Vector3(TeleportTo.position.x,TeleportTo.position.y,Camera.main.transform.position.z);
 		}
 	}
 
@@ -176,12 +180,40 @@ public class characterController2D : MonoBehaviour
 				TeleportTo = other.GetComponent<Teleport>().teleporter;
 			}
 		}
+
+		if(other.GetComponent<dialogos>()!=null){
+			GetComponent<setText>().setmessage(other.GetComponent<dialogos>().text);
+		}
+
     }
+
+	private void OnTriggerStay2D(Collider2D other){
+		if(other.GetComponent<Crystal>()!=null && !start_invicible){
+			this.GetComponent<Health>().health-=other.GetComponent<Crystal>().damage;
+			m_Rigidbody2D.velocity = new Vector2(0,10);
+			coroutine = invinsiblility(1.5f);
+        	StartCoroutine(coroutine);
+
+		}
+
+	}
 
 	private void OnTriggerExit2D(Collider2D other){
 		if(other.GetComponent<Teleport>()!=null){
 			GetComponent<setText>().setmessage("");
 			TeleportTo = null;
 		}
+
+		if(other.GetComponent<dialogos>()!=null){
+			GetComponent<setText>().setmessage("");
+		}
 	}
+
+	 private IEnumerator invinsiblility(float waitTime)
+    {
+			start_invicible  = true;
+            yield return new WaitForSeconds(waitTime);
+			start_invicible  =false;
+
+    }
 }
