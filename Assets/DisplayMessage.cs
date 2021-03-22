@@ -9,6 +9,11 @@ public class DisplayMessage : MonoBehaviour
     public string dialogo;
     public Text text;
     public GameObject panel;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +23,10 @@ public class DisplayMessage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+
 
     public void setText(){
         panel.SetActive(true);
@@ -31,6 +38,5 @@ public class DisplayMessage : MonoBehaviour
         text.text="";
     }
 
-    
 }
 

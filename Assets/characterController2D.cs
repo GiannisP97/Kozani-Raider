@@ -189,7 +189,7 @@ public class characterController2D : MonoBehaviour
 		}
 
 		if(other.GetComponent<Teleport>()!=null){
-			GetComponent<setText>().setmessage("Press E to Teleport");
+			GetComponent<setText>().setmessage("Πατα το Ε για να τηλεμεταφερθεις");
 
 			if(other.GetComponent<Teleport>().teleporter!=null){
 				TeleportTo = other.GetComponent<Teleport>().teleporter;
@@ -210,8 +210,9 @@ public class characterController2D : MonoBehaviour
 	private void OnTriggerStay2D(Collider2D other){
 		if(other.GetComponent<Crystal>()!=null && !start_invicible){
 			this.GetComponent<Health>().health-=other.GetComponent<Crystal>().damage;
-			m_Rigidbody2D.velocity = new Vector2(0,10);
-			coroutine = invinsiblility(1.5f);
+			m_Rigidbody2D.velocity = m_Rigidbody2D.velocity*-1;
+			
+			coroutine = invinsiblility(2f);
         	StartCoroutine(coroutine);
 
 		}
@@ -236,9 +237,24 @@ public class characterController2D : MonoBehaviour
 
 	 private IEnumerator invinsiblility(float waitTime)
     {
-			start_invicible  = true;
-            yield return new WaitForSeconds(waitTime);
-			start_invicible  =false;
+		start_invicible  = true;
+		Color tmp = GetComponent<SpriteRenderer>().color;
+		
+
+
+		for(int i=0;i<10;i++){
+			tmp.a = 0.3f;
+			GetComponent<SpriteRenderer>().color = tmp;
+			yield return new WaitForSeconds(waitTime/20);
+			tmp.a = 0.8f;
+			GetComponent<SpriteRenderer>().color = tmp;
+			yield return new WaitForSeconds(waitTime/20);
+		}
+
+		tmp.a = 1f;
+		GetComponent<SpriteRenderer>().color = tmp;
+
+		start_invicible  =false;
 
     }
 }
