@@ -19,6 +19,7 @@ public class question : ScriptableObject
     public string[] Answers{get{return answers;}}
     public int CorrectAnswer{get{return correct;}}
 
+    public bool Asked{get; internal set;}
 
 
 
