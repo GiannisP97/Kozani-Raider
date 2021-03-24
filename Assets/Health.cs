@@ -12,11 +12,15 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite EmptyHeart;
 
+    public GameObject gameover;
+
     void Update(){
 
 
         if(health<=0){
-            Destroy(this);
+            //Destroy(this);
+            this.gameObject.SetActive(false);
+            gameover.SetActive(true);
         }
 
 

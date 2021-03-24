@@ -30,6 +30,11 @@ public class characterController2D : MonoBehaviour
 	private float Horizontal_movement;
 
 	private Transform TeleportTo;
+	private bool start_invicible;
+
+	private facts facts;
+
+	private IEnumerator coroutine;
 
 	[Header("Events")]
 	[Space]
@@ -65,9 +70,23 @@ public class characterController2D : MonoBehaviour
             jump = true;
         }
 
+		if(Input.GetKeyDown(KeyCode.E) && facts!=null){
+			if(GetComponent<Books>().books>= facts.getcost()){
+				GetComponent<setText>().setmessage(facts.getFact());
+				GetComponent<Books>().books-=facts.getcost();
+				
+			}
+			else{
+				GetComponent<setText>().setmessage("Δεν έχεις τα απαραίτητα βιβλία");
+			}
+			
+
+		}
+
 		if(Input.GetKeyDown(KeyCode.E) && TeleportTo!=null)
 		{
 			transform.position = TeleportTo.position;
+			Camera.main.transform.position = new Vector3(TeleportTo.position.x,TeleportTo.position.y,Camera.main.transform.position.z);
 		}
 	}
 
@@ -170,18 +189,72 @@ public class characterController2D : MonoBehaviour
 		}
 
 		if(other.GetComponent<Teleport>()!=null){
-			GetComponent<setText>().setmessage("Press E to Teleport");
+			GetComponent<setText>().setmessage("Πατα το Ε για να τηλεμεταφερθεις");
 
 			if(other.GetComponent<Teleport>().teleporter!=null){
 				TeleportTo = other.GetComponent<Teleport>().teleporter;
 			}
 		}
+
+		if(other.GetComponent<DisplayMessage>()!=null){
+			other.GetComponent<DisplayMessage>().setText();
+		}
+
+		if(other.GetComponent<facts>()!=null){
+			facts = other.GetComponent<facts>();
+			GetComponent<setText>().setmessage("Πάτα το Ε για να αγοράσεις facts. Το επομενο fact κοστίζει "+other.GetComponent<facts>().getcost());
+		}
+
     }
+
+	private void OnTriggerStay2D(Collider2D other){
+		if(other.GetComponent<Crystal>()!=null && !start_invicible){
+			this.GetComponent<Health>().health-=other.GetComponent<Crystal>().damage;
+			m_Rigidbody2D.velocity = m_Rigidbody2D.velocity*-1;
+			
+			coroutine = invinsiblility(2f);
+        	StartCoroutine(coroutine);
+
+		}
+
+	}
 
 	private void OnTriggerExit2D(Collider2D other){
 		if(other.GetComponent<Teleport>()!=null){
 			GetComponent<setText>().setmessage("");
 			TeleportTo = null;
 		}
+
+		if(other.GetComponent<DisplayMessage>()!=null){
+			other.GetComponent<DisplayMessage>().hideText();
+		}
+
+		if(other.GetComponent<facts>()!=null){
+			GetComponent<setText>().setmessage("");
+			facts = null;
+		}
 	}
+
+	 private IEnumerator invinsiblility(float waitTime)
+    {
+		start_invicible  = true;
+		Color tmp = GetComponent<SpriteRenderer>().color;
+		
+
+
+		for(int i=0;i<10;i++){
+			tmp.a = 0.3f;
+			GetComponent<SpriteRenderer>().color = tmp;
+			yield return new WaitForSeconds(waitTime/20);
+			tmp.a = 0.8f;
+			GetComponent<SpriteRenderer>().color = tmp;
+			yield return new WaitForSeconds(waitTime/20);
+		}
+
+		tmp.a = 1f;
+		GetComponent<SpriteRenderer>().color = tmp;
+
+		start_invicible  =false;
+
+    }
 }
