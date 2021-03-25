@@ -7,6 +7,11 @@ public class questionSelection : MonoBehaviour
 {
     private question[] allQuestions;
 
+    private void Awake()
+    {
+        LoadQuestions();
+    }
+
     private void LoadQuestions()
     {
         allQuestions = Resources.LoadAll<question>("Questions");

@@ -10,10 +10,10 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private Text questionText;
     [SerializeField]
-    private Button[] answerButtons;
+    public Button[] answerButtons;
 
     [SerializeField]
-    private GameObject correctAnswerPopup;
+    public GameObject correctAnswerPopup;
     [SerializeField]
     private GameObject wrongAnswerPopup;
 
