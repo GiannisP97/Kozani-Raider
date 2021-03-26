@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    public GameObject[] hearts;
 
     [SerializeField]
     private Text questionText;
@@ -16,6 +15,12 @@ public class UiManager : MonoBehaviour
     public GameObject correctAnswerPopup;
     [SerializeField]
     private GameObject wrongAnswerPopup;
+
+    private question currentQuestions;
+
+    public bool hasAnswered = false;
+
+    public Books books;
 
 
 
@@ -31,9 +36,11 @@ public class UiManager : MonoBehaviour
         
     }
 
+
+
     public void QuestionUISetup(question q)
     {
-
+        currentQuestions = q;
         correctAnswerPopup.SetActive(false);
         wrongAnswerPopup.SetActive(false);
         questionText.text = q.QuestionText;
@@ -44,6 +51,18 @@ public class UiManager : MonoBehaviour
             answerButtons[i].gameObject.SetActive(true);
         }
 
+    }
+
+    public void submit(int i){
+        if(currentQuestions!=null){
+            hasAnswered = true;
+            if(currentQuestions.CorrectAnswer==i){
+                books.books+=5;
+                rightOrWrongPopup(true);
+            }
+            else
+                rightOrWrongPopup(false);
+        }
     }
 
     public void rightOrWrongPopup(bool a)

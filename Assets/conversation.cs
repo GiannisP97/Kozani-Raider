@@ -13,25 +13,30 @@ public class conversation : MonoBehaviour
     public Text conv_text;
     public Sprite portraito;
 
+    public UiManager uiManager;
+
+    public questionSelection questionSelection;
+
 
     public string[] conversation_text;
 
     private int counter = 0;
     private float distance;
-
+    private bool inconversation;
     private IEnumerator routine;
     // Start is called before the first frame update
     void Start()
     {
-        
+        inconversation = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         distance = Vector3.Distance(player.transform.position ,transform.position);
-        if(distance<=1 && Input.GetKeyDown(KeyCode.E)){
-            routine = start_conversation(4.5f);
+        if(distance<=1 && Input.GetKeyDown(KeyCode.E) && !inconversation){
+            inconversation = true;
+            routine = start_conversation(0.5f);
         	StartCoroutine(routine);
         }
         
@@ -53,11 +58,19 @@ public class conversation : MonoBehaviour
             conv_text.text = conversation_text[i];
             yield return new WaitForSeconds(waitTime);
         }
+
+        uiManager.QuestionUISetup(questionSelection.SelectQuestion());
+
         conv_panel.SetActive(false);
+        erwtiseis_panel.SetActive(true);
+
+        yield return new WaitUntil(()=> uiManager.hasAnswered);
+        uiManager.hasAnswered = false;
+        yield return new WaitForSeconds(3f);
 
         player.GetComponent<characterController2D>().enabled = true;
         dialogos_panel.SetActive(false);
-        
+        inconversation = false;
      }
     
 }

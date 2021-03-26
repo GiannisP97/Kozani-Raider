@@ -22,11 +22,13 @@ public class questionSelection : MonoBehaviour
         ResetIfAllAsked();
 
         question q = allQuestions.Where(t => t.Asked == false).OrderBy(t => UnityEngine.Random.Range(0, int.MaxValue)).FirstOrDefault();
-
+ 
         q.Asked = true;
         return q;
 
     }
+
+
 
     private void ResetIfAllAsked()
     {
