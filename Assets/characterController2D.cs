@@ -72,8 +72,9 @@ public class characterController2D : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.E) && facts!=null){
 			if(GetComponent<Books>().books>= facts.getcost()){
-				GetComponent<setText>().setmessage(facts.getFact());
 				GetComponent<Books>().books-=facts.getcost();
+				GetComponent<setText>().setmessage(facts.getFact());
+				
 				
 			}
 			else{

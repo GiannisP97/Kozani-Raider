@@ -7,7 +7,11 @@ public class conversation : MonoBehaviour
 {
     public GameObject player;
     public GameObject conv_panel;
+    public GameObject dialogos_panel;
+    public GameObject erwtiseis_panel;
+    public Image image;
     public Text conv_text;
+    public Sprite portraito;
 
 
     public string[] conversation_text;
@@ -39,8 +43,11 @@ public class conversation : MonoBehaviour
         player.GetComponent<characterController2D>().enabled = false;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2();
         player.GetComponent<Animator>().SetInteger("State",0);
-        //panel.SetActive(false);
+        erwtiseis_panel.SetActive(false);
+        dialogos_panel.SetActive(true);
         conv_panel.SetActive(true);
+        image.sprite = portraito;
+
 
         for(int i=0;i<conversation_text.Length;i++){
             conv_text.text = conversation_text[i];
@@ -49,7 +56,8 @@ public class conversation : MonoBehaviour
         conv_panel.SetActive(false);
 
         player.GetComponent<characterController2D>().enabled = true;
-    
+        dialogos_panel.SetActive(false);
+        
      }
     
 }
