@@ -24,10 +24,13 @@ public class conversation : MonoBehaviour
     private float distance;
     private bool inconversation;
     private IEnumerator routine;
+
+    private DisplayMessage displayMessage;
     // Start is called before the first frame update
     void Start()
     {
         inconversation = false;
+        displayMessage = GetComponent<DisplayMessage>();
     }
 
     // Update is called once per frame
@@ -48,6 +51,7 @@ public class conversation : MonoBehaviour
         player.GetComponent<characterController2D>().enabled = false;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2();
         player.GetComponent<Animator>().SetInteger("State",0);
+        this.GetComponent<DisplayMessage>().enabled = false;
         erwtiseis_panel.SetActive(false);
         dialogos_panel.SetActive(true);
         conv_panel.SetActive(true);
@@ -69,6 +73,7 @@ public class conversation : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         player.GetComponent<characterController2D>().enabled = true;
+        this.GetComponent<DisplayMessage>().enabled = false;
         dialogos_panel.SetActive(false);
         inconversation = false;
      }
