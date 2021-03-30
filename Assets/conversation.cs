@@ -54,6 +54,8 @@ public class conversation : MonoBehaviour
         this.GetComponent<DisplayMessage>().enabled = false;
         erwtiseis_panel.SetActive(false);
         dialogos_panel.SetActive(true);
+        dialogos_panel.transform.GetChild(0).gameObject.SetActive(false);
+        dialogos_panel.transform.GetChild(1).gameObject.SetActive(true);
         conv_panel.SetActive(true);
         image.sprite = portraito;
 

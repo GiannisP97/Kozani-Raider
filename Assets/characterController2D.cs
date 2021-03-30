@@ -15,8 +15,7 @@ public class characterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
-
-	public int lifes = 3;
+	public bool can_enter_teleport_room;
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -73,7 +72,8 @@ public class characterController2D : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.E) && facts!=null){
 			if(GetComponent<Books>().books>= facts.getcost()){
 				GetComponent<Books>().books-=facts.getcost();
-				GetComponent<setText>().setmessage(facts.getFact());
+				facts.DisplayFact();
+				//GetComponent<setText>().setmessage(facts.getFact());
 				
 				
 			}
@@ -184,6 +184,16 @@ public class characterController2D : MonoBehaviour
 			this.GetComponent<Health>().health--;
 			transform.position = position_before_jump;
 		}
+		if(other.gameObject.GetComponent<DoorTrigger>()!=null){
+			if(can_enter_teleport_room && other.gameObject.GetComponent<DoorTrigger>().isOpened()){
+				other.gameObject.GetComponent<DoorTrigger>().disableDoor();
+			}
+			else{
+				other.gameObject.GetComponent<DoorTrigger>().enableDoor();
+			}
+		}
+		
+
 		if(other.tag=="book"){
 			this.GetComponent<Books>().books++;
 			Destroy(other.gameObject);
