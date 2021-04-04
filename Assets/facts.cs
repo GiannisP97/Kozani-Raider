@@ -10,6 +10,8 @@ public class facts : MonoBehaviour
 
     public GameObject player;
 
+    private bool isEmpty = false;
+
     private int counter = 0;
     private IEnumerator routine;
     private int cost = 1;
@@ -34,6 +36,17 @@ public class facts : MonoBehaviour
         
     }
 
+    public bool getIsEmpty(){
+        if(Facts.Length<counter+1){
+            isEmpty = true;
+        }
+        else
+        isEmpty = false;
+
+
+        return isEmpty;
+    }
+
     public int getcost(){
         return cost;
     }
@@ -41,12 +54,17 @@ public class facts : MonoBehaviour
 
     public string getFact(){
         if(Facts.Length>counter){
+            string f = Facts[counter];
             counter++;
             cost+=2;
-            return Facts[counter];
+            print(counter);
+            return f;
         }
-        else
+        else{
+            isEmpty = true;
             return "Δεν υπαρχουν αλλα facts";
+        }
+            
     }
 
 
@@ -67,13 +85,32 @@ public class facts : MonoBehaviour
         dialogosPanel.transform.GetChild(0).gameObject.SetActive(false);
         dialogosPanel.transform.GetChild(1).gameObject.SetActive(false);
         dialogosPanel.transform.GetChild(2).gameObject.SetActive(true);
+        string txt = getFact();
 
-        text.text = getFact();
-        yield return new WaitForSeconds(3f);
+
         inFact = true;
+        finished = false;
+        if(txt.Length>250)
+        {
+            text.text = txt.Substring(0,200);
+            
+            yield return new WaitForSeconds(1.5f);
 
 
-        yield return new WaitUntil(()=> finished);
+            yield return new WaitUntil(()=> finished);
+            finished = false;
+            text.text = txt.Substring(200);
+
+            yield return new WaitForSeconds(1.5f);
+            yield return new WaitUntil(()=> finished);
+        }
+        else{
+            text.text = txt;
+            yield return new WaitUntil(()=> finished);
+        }
+
+
+
         finished = false;
 
         player.GetComponent<characterController2D>().enabled = true;

@@ -71,11 +71,13 @@ public class characterController2D : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.E) && facts!=null){
 			if(GetComponent<Books>().books>= facts.getcost()){
-				GetComponent<Books>().books-=facts.getcost();
-				facts.DisplayFact();
-				//GetComponent<setText>().setmessage(facts.getFact());
-				
-				
+				if(!facts.getIsEmpty()){
+					GetComponent<Books>().books-=facts.getcost();
+					facts.DisplayFact();
+
+				}else{
+					GetComponent<setText>().setmessage("Δεν υπάρχει άλλη γνώση");
+				}
 			}
 			else{
 				GetComponent<setText>().setmessage("Δεν έχεις τα απαραίτητα βιβλία");
@@ -199,13 +201,7 @@ public class characterController2D : MonoBehaviour
 			Destroy(other.gameObject);
 		}
 
-		if(other.GetComponent<Teleport>()!=null){
-			GetComponent<setText>().setmessage("Πατα το Ε για να τηλεμεταφερθεις");
 
-			if(other.GetComponent<Teleport>().teleporter!=null){
-				TeleportTo = other.GetComponent<Teleport>().teleporter;
-			}
-		}
 
 		if(other.GetComponent<DisplayMessage>()!=null){
 			other.GetComponent<DisplayMessage>().setText();
@@ -213,7 +209,7 @@ public class characterController2D : MonoBehaviour
 
 		if(other.GetComponent<facts>()!=null){
 			facts = other.GetComponent<facts>();
-			GetComponent<setText>().setmessage("Πάτα το Ε για να αγοράσεις facts. Το επομενο fact κοστίζει "+other.GetComponent<facts>().getcost());
+			GetComponent<setText>().setmessage("Πάτα Ε για να αγοράσεις γνώσεις. Η επόμενη γνώση κοστίζει "+other.GetComponent<facts>().getcost());
 		}
 
     }
@@ -226,6 +222,13 @@ public class characterController2D : MonoBehaviour
 			coroutine = invinsiblility(2f);
         	StartCoroutine(coroutine);
 
+		}
+		if(other.GetComponent<Teleport>()!=null){
+			GetComponent<setText>().setmessage("Πάτα Ε για τηλεμεταφορά");
+
+			if(other.GetComponent<Teleport>().teleporter!=null){
+				TeleportTo = other.GetComponent<Teleport>().teleporter;
+			}
 		}
 
 	}
