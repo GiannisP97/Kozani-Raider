@@ -12,7 +12,7 @@ public class facts : MonoBehaviour
 
     private bool isEmpty = false;
 
-    private int counter = 0;
+    private int counter = 7;
     private IEnumerator routine;
     private int cost = 1;
     private float distance;
@@ -90,22 +90,49 @@ public class facts : MonoBehaviour
 
         inFact = true;
         finished = false;
-        if(txt.Length>250)
+        if(txt.Length>320)
         {
-            text.text = txt.Substring(0,200);
+            if(txt.Length>640){
+                text.text = txt.Substring(0,320);
+                print(txt.Length);
+
+                yield return new WaitForSeconds(1.5f);
+                yield return new WaitUntil(()=> finished);
+                
+                finished = false;
+                text.text = txt.Substring(320,320);
+
+                yield return new WaitForSeconds(1.5f);
+                yield return new WaitUntil(()=> finished);
+
+                finished = false;
+                text.text = txt.Substring(640);
+
+                yield return new WaitForSeconds(1.5f);
+                yield return new WaitUntil(()=> finished);
+                
+
+            }
+            else{
+                text.text = txt.Substring(0,320);
             
-            yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1.5f);
 
 
-            yield return new WaitUntil(()=> finished);
-            finished = false;
-            text.text = txt.Substring(200);
+                yield return new WaitUntil(()=> finished);
+                finished = false;
+                text.text = txt.Substring(320);
 
-            yield return new WaitForSeconds(1.5f);
-            yield return new WaitUntil(()=> finished);
+                yield return new WaitForSeconds(1.5f);
+                yield return new WaitUntil(()=> finished);
+
+            }
+
         }
         else{
             text.text = txt;
+            
+            yield return new WaitForSeconds(1.5f);
             yield return new WaitUntil(()=> finished);
         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public Transform teleporter;
+    public bool active = false;
     // Start is called before the first frame update
     void Start()
     {

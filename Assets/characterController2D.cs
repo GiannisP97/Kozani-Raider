@@ -15,7 +15,7 @@ public class characterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
-	public bool can_enter_teleport_room;
+
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -31,7 +31,16 @@ public class characterController2D : MonoBehaviour
 	private Transform TeleportTo;
 	private bool start_invicible;
 
+	public bool can_enter_teleport_room;
+
 	private facts facts;
+
+
+	public void setTeleport(bool i){
+
+		can_enter_teleport_room = i;
+	}
+
 
 	private IEnumerator coroutine;
 
@@ -223,7 +232,7 @@ public class characterController2D : MonoBehaviour
         	StartCoroutine(coroutine);
 
 		}
-		if(other.GetComponent<Teleport>()!=null){
+		if(other.GetComponent<Teleport>()!=null && other.GetComponent<Teleport>().active){
 			GetComponent<setText>().setmessage("Πάτα Ε για τηλεμεταφορά");
 
 			if(other.GetComponent<Teleport>().teleporter!=null){

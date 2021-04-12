@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +22,8 @@ public class UiManager : MonoBehaviour
 
     public Books books;
 
+    public bool IsCorrect = false;
+
 
 
     // Start is called before the first frame update
@@ -40,6 +42,7 @@ public class UiManager : MonoBehaviour
 
     public void QuestionUISetup(question q)
     {
+        IsCorrect = false;
         currentQuestions = q;
         correctAnswerPopup.SetActive(false);
         wrongAnswerPopup.SetActive(false);
@@ -58,6 +61,7 @@ public class UiManager : MonoBehaviour
             hasAnswered = true;
             if(currentQuestions.CorrectAnswer==i){
                 books.books+=5;
+                IsCorrect = true;
                 rightOrWrongPopup(true);
             }
             else

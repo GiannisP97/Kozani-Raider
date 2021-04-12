@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +24,7 @@ public class conversation : MonoBehaviour
     private float distance;
     private bool inconversation;
     private IEnumerator routine;
+    private bool HasAnsweredCorrect = false;
 
     private DisplayMessage displayMessage;
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class conversation : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.transform.position ,transform.position);
-        if(distance<=1 && Input.GetKeyDown(KeyCode.E) && !inconversation){
+        if(distance<=1 && Input.GetKeyDown(KeyCode.E) && !inconversation && !HasAnsweredCorrect){
             inconversation = true;
             routine = start_conversation(0.5f);
         	StartCoroutine(routine);
@@ -45,7 +46,6 @@ public class conversation : MonoBehaviour
         
         
     }
-
     private IEnumerator start_conversation(float waitTime){
 
         player.GetComponent<characterController2D>().enabled = false;
@@ -67,17 +67,19 @@ public class conversation : MonoBehaviour
 
         uiManager.QuestionUISetup(questionSelection.SelectQuestion());
 
+
         conv_panel.SetActive(false);
         erwtiseis_panel.SetActive(true);
 
         yield return new WaitUntil(()=> uiManager.hasAnswered);
         uiManager.hasAnswered = false;
         yield return new WaitForSeconds(3f);
-
+        HasAnsweredCorrect = uiManager.IsCorrect;
+        
         player.GetComponent<characterController2D>().enabled = true;
         this.GetComponent<DisplayMessage>().enabled = false;
         dialogos_panel.SetActive(false);
         inconversation = false;
-     }
+    }
     
 }
