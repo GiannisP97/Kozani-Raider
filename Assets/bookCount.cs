@@ -26,8 +26,9 @@ public class bookCount : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position ,transform.position);
         if(distance<=1){
             player.GetComponent<characterController2D>().can_enter_teleport_room = true;
-            for(int i=0;i>teleports.Length;i++){
+            for(int i=0;i<teleports.Length;i++){
                 teleports[i].GetComponent<Teleport>().active = true;
+
             }
 
             displayMessage.text.text = "Συγχαρητήρια έφτασες στο τέλος της πίστας Πλέον μπορείς να χρησιμοποιήσεις την αίθουσα τελεμεταφορών.";

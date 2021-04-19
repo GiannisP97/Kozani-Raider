@@ -14,7 +14,7 @@ public class characterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-
+	public AudioClip[] audioClip;
 
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -27,6 +27,8 @@ public class characterController2D : MonoBehaviour
 
 	private bool jump = false;
 	private float Horizontal_movement;
+
+	private AudioSource audioSource;
 
 	private Transform TeleportTo;
 	private bool start_invicible;
@@ -58,6 +60,10 @@ public class characterController2D : MonoBehaviour
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
+		audioSource.clip = audioClip[0];
+
+
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
@@ -83,7 +89,6 @@ public class characterController2D : MonoBehaviour
 				if(!facts.getIsEmpty()){
 					GetComponent<Books>().books-=facts.getcost();
 					facts.DisplayFact();
-
 				}else{
 					GetComponent<setText>().setmessage("Δεν υπάρχει άλλη γνώση");
 				}
@@ -94,12 +99,13 @@ public class characterController2D : MonoBehaviour
 			
 
 		}
-
+		/*
 		if(Input.GetKeyDown(KeyCode.E) && TeleportTo!=null)
 		{
 			transform.position = TeleportTo.position;
 			Camera.main.transform.position = new Vector3(TeleportTo.position.x,TeleportTo.position.y,Camera.main.transform.position.z);
 		}
+		*/
 	}
 
 	private void FixedUpdate()
@@ -139,11 +145,18 @@ public class characterController2D : MonoBehaviour
 			Vector3 targetVelocity;
 			// Move the character by finding the target velocity
 			if(!m_Grounded){
-				 targetVelocity = new Vector2(move * 10f * speed_while_air, m_Rigidbody2D.velocity.y);
+				targetVelocity = new Vector2(move * 10f * speed_while_air, m_Rigidbody2D.velocity.y);
 			}
 			else{
 				targetVelocity = new Vector2(move * 10f * speed, m_Rigidbody2D.velocity.y);
+				if(!audioSource.isPlaying){
+					audioSource.Play();
+				}
 			}
+			if(move==0){
+				audioSource.Stop();
+			}
+
 				
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
@@ -168,6 +181,7 @@ public class characterController2D : MonoBehaviour
 			m_Grounded = false;
 			position_before_jump = this.transform.position;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			audioSource.Stop();
 			//animator.SetInteger("State",1);
 		}
 	}
@@ -220,6 +234,12 @@ public class characterController2D : MonoBehaviour
 			facts = other.GetComponent<facts>();
 			GetComponent<setText>().setmessage("Πάτα Ε για να αγοράσεις γνώσεις. Η επόμενη γνώση κοστίζει "+other.GetComponent<facts>().getcost());
 		}
+		if(other.GetComponent<Teleport>()!=null ){
+			GetComponent<Health>().health = GetComponent<Health>().numOfHearts;
+			if(other.GetComponent<Teleport>().active){
+				GetComponent<setText>().setmessage("Πάτα Ε για τηλεμεταφορά");
+			}
+		}
 
     }
 
@@ -232,14 +252,20 @@ public class characterController2D : MonoBehaviour
         	StartCoroutine(coroutine);
 
 		}
-		if(other.GetComponent<Teleport>()!=null && other.GetComponent<Teleport>().active){
-			GetComponent<setText>().setmessage("Πάτα Ε για τηλεμεταφορά");
-
-			if(other.GetComponent<Teleport>().teleporter!=null){
-				TeleportTo = other.GetComponent<Teleport>().teleporter;
-			}
+	}
+	private void OnCollisionEnter2D(Collision2D other){
+		string name = other.gameObject.name;
+		switch(name){
+			case "Tilemap_snow":
+				audioSource.clip = audioClip[1];
+				break;
+			case "Tilemap_grass":
+				audioSource.clip = audioClip[0];
+				break;
+			case "Tilemap_ice":
+				audioSource.clip = audioClip[2];
+				break;
 		}
-
 	}
 
 	private void OnTriggerExit2D(Collider2D other){
