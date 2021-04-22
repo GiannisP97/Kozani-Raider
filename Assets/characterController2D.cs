@@ -32,6 +32,7 @@ public class characterController2D : MonoBehaviour
 
 	private Transform TeleportTo;
 	private bool start_invicible;
+	public bool isTeleporting = false;
 
 	public bool can_enter_teleport_room;
 
@@ -149,12 +150,15 @@ public class characterController2D : MonoBehaviour
 			}
 			else{
 				targetVelocity = new Vector2(move * 10f * speed, m_Rigidbody2D.velocity.y);
+
+			}
+			if(move==0 && m_Grounded){
+				audioSource.Stop();
+			}
+			else if(m_Grounded){
 				if(!audioSource.isPlaying){
 					audioSource.Play();
 				}
-			}
-			if(move==0){
-				audioSource.Stop();
 			}
 
 				
@@ -181,7 +185,9 @@ public class characterController2D : MonoBehaviour
 			m_Grounded = false;
 			position_before_jump = this.transform.position;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-			audioSource.Stop();
+			audioSource.clip = audioClip[3];
+			//audioSource.loop = false;
+			audioSource.Play();
 			//animator.SetInteger("State",1);
 		}
 	}
