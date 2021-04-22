@@ -40,7 +40,7 @@ public class conversation : MonoBehaviour
         distance = Vector3.Distance(player.transform.position ,transform.position);
         if(distance<=1 && Input.GetKeyDown(KeyCode.E) && !inconversation && !HasAnsweredCorrect){
             inconversation = true;
-            routine = start_conversation(0.5f);
+            routine = start_conversation(2f);
         	StartCoroutine(routine);
         }
         
