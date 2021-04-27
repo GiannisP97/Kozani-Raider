@@ -7,7 +7,7 @@ public class bookCount : MonoBehaviour
 {
     public GameObject player;
     public Text textCount;
-    public int maxBooks = 100;
+    public int maxBooks = 65;
 
     public GameObject[] teleports;
 
@@ -30,8 +30,7 @@ public class bookCount : MonoBehaviour
                 teleports[i].GetComponent<Teleport>().active = true;
 
             }
-
-            displayMessage.text.text = "Συγχαρητήρια έφτασες στο τέλος της πίστας Πλέον μπορείς να χρησιμοποιήσεις την αίθουσα τελεμεταφορών.";
+            displayMessage.text.text = "Πρεπει να μαζεψεις ολα τα βιβλια για νικήσεις";
         }
     }
 }

@@ -34,6 +34,9 @@ public class AutoScroller : MonoBehaviour
         if(Mathf.Abs(dist1)>0.1){
             camera.position = camera.position + new Vector3(dist1*Time.deltaTime* fixing_speed_x,0,0);
         }
+        if(Mathf.Abs(dist1)>10){
+            camera.position = new Vector3(this.transform.position.x,this.transform.position.y,camera.position.z);
+        }
         
         if(camera.position.y<0){
             adj = false;

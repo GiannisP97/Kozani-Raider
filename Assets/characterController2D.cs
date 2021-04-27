@@ -29,8 +29,6 @@ public class characterController2D : MonoBehaviour
 	private float Horizontal_movement;
 
 	private AudioSource audioSource;
-
-	private Transform TeleportTo;
 	private bool start_invicible;
 	public bool isTeleporting = false;
 
@@ -216,11 +214,8 @@ public class characterController2D : MonoBehaviour
 			transform.position = position_before_jump;
 		}
 		if(other.gameObject.GetComponent<DoorTrigger>()!=null){
-			if(can_enter_teleport_room && other.gameObject.GetComponent<DoorTrigger>().isOpened()){
+			if(can_enter_teleport_room){
 				other.gameObject.GetComponent<DoorTrigger>().disableDoor();
-			}
-			else{
-				other.gameObject.GetComponent<DoorTrigger>().enableDoor();
 			}
 		}
 		
@@ -252,7 +247,7 @@ public class characterController2D : MonoBehaviour
 	private void OnTriggerStay2D(Collider2D other){
 		if(other.GetComponent<Crystal>()!=null && !start_invicible){
 			this.GetComponent<Health>().health-=other.GetComponent<Crystal>().damage;
-			m_Rigidbody2D.velocity = m_Rigidbody2D.velocity*-1;
+			m_Rigidbody2D.velocity = m_Rigidbody2D.velocity*-0.5f;
 			
 			coroutine = invinsiblility(2f);
         	StartCoroutine(coroutine);
@@ -277,7 +272,6 @@ public class characterController2D : MonoBehaviour
 	private void OnTriggerExit2D(Collider2D other){
 		if(other.GetComponent<Teleport>()!=null){
 			GetComponent<setText>().setmessage("");
-			TeleportTo = null;
 		}
 
 		if(other.GetComponent<DisplayMessage>()!=null){
@@ -288,6 +282,13 @@ public class characterController2D : MonoBehaviour
 			GetComponent<setText>().setmessage("");
 			facts = null;
 		}
+	}
+
+	public void resetInvisiblility(){
+		start_invicible = false;
+		Color tmp = GetComponent<SpriteRenderer>().color;
+		tmp.a = 1;
+		GetComponent<SpriteRenderer>().color = tmp;
 	}
 
 	 private IEnumerator invinsiblility(float waitTime)

@@ -9,6 +9,8 @@ public class GameOverButtons : MonoBehaviour
     public Button tryAgain;
     public Button Quit;
 
+    public Transform player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,12 @@ public class GameOverButtons : MonoBehaviour
     }
 
     private void Task1(){
-        SceneManager.LoadScene("level1",LoadSceneMode.Single);
+        //SceneManager.LoadScene("level1",LoadSceneMode.Single);
+        player.position = new Vector3(-8,-1,0);
+        player.GetComponent<Health>().health = player.GetComponent<Health>().numOfHearts;
+        player.gameObject.SetActive(true);
+        player.GetComponent<characterController2D>().resetInvisiblility();
+        this.gameObject.SetActive(false);
     }
 
     private void Task2(){

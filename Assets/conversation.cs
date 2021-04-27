@@ -20,7 +20,6 @@ public class conversation : MonoBehaviour
 
     public string[] conversation_text;
 
-    private int counter = 0;
     private float distance;
     private bool inconversation;
     private IEnumerator routine;

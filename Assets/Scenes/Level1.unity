@@ -1255,6 +1255,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7749909207340918127, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
 --- !u!1 &225287152 stripped
@@ -65847,10 +65851,19 @@ MonoBehaviour:
   uiManager: {fileID: 623663281}
   questionSelection: {fileID: 623663280}
   conversation_text:
-  - ffffffff
-  - dddddddd
-  - bbbbbbb
-  - bnnnnnnnnnn
+  - "\u03A7\u03B1\u03C1\u03AF\u03C3\u03B9\u03BF\u03C2 \u039C\u03B5\u03B3\u03B4\u03AC\u03BD\u03B7\u03C2:
+    \u0393\u03B5\u03B9\u03AC \u03C7\u03B1\u03C1\u03AC \u03C0\u03C9\u03C2 \u03B1\u03C0\u03BF
+    \u03C4\u03B1 \u03BC\u03AD\u03C1\u03B7 \u03BC\u03B1\u03C2;"
+  - "\u0395\u03C3\u03CD: \u0395\u03BC\u03BC...\u039A\u03B1\u03BB\u03B7\u03C3\u03C0\u03AD\u03C1\u03B1
+    \u03B5\u03AF\u03BC\u03B1\u03B9 \u03C6\u03BF\u03B9\u03C4\u03B7\u03C4\u03AE\u03C2
+    \u03BA\u03B1\u03B9 \u03C8\u03AC\u03C7\u03BD\u03C9 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2
+    \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03C0\u03CC\u03BB\u03B7 \u03B1\u03C5\u03C4\u03AE\u03BD
+    \u03BC\u03AE\u03C0\u03C9\u03C2 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF\u03C2 \u03BD\u03B1
+    \u03BC\u03B5 \u03B2\u03BF\u03B7\u03B8\u03AE\u03C3\u03B5\u03B9\u03C2;"
+  - "\u03A7\u03B1\u03C1\u03AF\u03C3\u03B9\u03BF\u03C2 \u039C\u03B5\u03B3\u03B4\u03AC\u03BD\u03B7\u03C2:
+    \u0392\u03B5\u03B2\u03B1\u03AF\u03C9\u03C2, \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF\u03C2
+    \u03BD\u03B1 \u03B4\u03B5\u03AF\u03C2 \u03B1\u03C5\u03C4\u03AD\u03C2 \u03C4\u03B9\u03C2
+    \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2."
 --- !u!1 &469470394
 GameObject:
   m_ObjectHideFlags: 0
@@ -66372,6 +66385,10 @@ PrefabInstance:
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749909207340918127, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
@@ -67278,14 +67295,14 @@ MonoBehaviour:
   - "\u0399\u03C9\u03B1\u03BA\u03B5\u03AF\u03BC \u039B\u03B9\u03BF\u03CD\u03BB\u03B9\u03B1\u03C2:
     \u039A\u03B1\u03BB\u03B7\u03C3\u03C0\u03AD\u03C1\u03B1 \u03C0\u03B1\u03B9\u03B4\u03AF
     \u03BC\u03BF\u03C5 \u03C4\u03B9 \u03BA\u03AC\u03BD\u03B5\u03B9\u03C2 \u03B5\u03B4\u03C9;"
-  - "\u0395\u03C3\u03CD: \u0395\u03AF\u03C3\u03B1\u03B9 \u03C3\u03C5\u03BD\u03B7\u03B8\u03B9\u03C3\u03BC\u03AD\u03BD\u03BF\u03C2
-    \u03C0\u03BB\u03AD\u03BF\u03BD (\u03BF\u03BD\u03BF\u03BC\u03B1). \u0388\u03C7\u03B5\u03B9\u03C2
-    \u03BE\u03B1\u03BD\u03B1\u03BC\u03B9\u03BB\u03AE\u03C3\u03B5\u03B9 \u03C3\u03B5
-    \u03B5\u03B9\u03BA\u03CC\u03BD\u03B5\u03C2...     \u039A\u03B1\u03BB\u03B7\u03C3\u03AD\u03C1\u03B1
-    \u03BA\u03B1\u03B9 \u03C3\u03B5 \u03B5\u03C3\u03AD\u03BD\u03B1 \u03A0\u03AC\u03C4\u03B5\u03C1.
-    \u0395\u03AF\u03BC\u03B1\u03B9 \u03C6\u03BF\u03B9\u03C4\u03B7\u03C4\u03AE\u03C2
-    \u03BA\u03B1\u03B9 \u03C8\u03AC\u03C7\u03BD\u03C9 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2
-    \u03B3\u03B9\u03B1 \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7\u03BD \u03C0\u03CC\u03BB\u03B7."
+  - "\u0395\u03C3\u03CD: \u0388\u03C7\u03C9 \u03BE\u03B1\u03BD\u03B1\u03BC\u03B9\u03BB\u03AE\u03C3\u03B5\u03B9
+    \u03C3\u03B5 \u03B5\u03B9\u03BA\u03CC\u03BD\u03B5\u03C2 \u03B4\u03B5\u03BD \u03BC\u03BF\u03C5
+    \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C0\u03BB\u03AD\u03BF\u03BD \u03C0\u03B5\u03C1\u03AF\u03B5\u03C1\u03B3\u03BF...  
+    \u039A\u03B1\u03BB\u03B7\u03C3\u03C0\u03AD\u03C1\u03B1 \u03BA\u03B1\u03B9 \u03C3\u03B5
+    \u03B5\u03C3\u03AD\u03BD\u03B1 \u03A0\u03AC\u03C4\u03B5\u03C1. \u0395\u03AF\u03BC\u03B1\u03B9
+    \u03C6\u03BF\u03B9\u03C4\u03B7\u03C4\u03AE\u03C2 \u03BA\u03B1\u03B9 \u03C8\u03AC\u03C7\u03BD\u03C9
+    \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2 \u03B3\u03B9\u03B1
+    \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7\u03BD \u03C0\u03CC\u03BB\u03B7."
   - "\u0399\u03C9\u03B1\u03BA\u03B5\u03AF\u03BC \u039B\u03B9\u03BF\u03CD\u03BB\u03B9\u03B1\u03C2:
     A\u03B1\u03B1 \u03C9\u03C1\u03B1\u03AF\u03B1 \u03C4\u03BF\u03C4\u03B5 \u03B5\u03AF\u03C3\u03B1\u03B9
     \u03C3\u03C4\u03BF \u03C3\u03C9\u03C3\u03C4\u03CC \u03BC\u03AD\u03C1\u03BF\u03C2.
@@ -69704,7 +69721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 551.95
+      value: 551.67
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -69721,6 +69738,10 @@ PrefabInstance:
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749909207340918127, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1581570948893454045, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
@@ -74783,6 +74804,42 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6322018208916725510, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
   m_PrefabInstance: {fileID: 835253910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &997597322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997597320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dee38485bd12b4ba1f8ca1385af41c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1446783522}
+  conv_panel: {fileID: 819127354}
+  dialogos_panel: {fileID: 1813636376}
+  erwtiseis_panel: {fileID: 278911964}
+  image: {fileID: 1910505976}
+  conv_text: {fileID: 1920398968}
+  portraito: {fileID: 21300000, guid: b83cd3560a662a948aa6c9395caa5963, type: 3}
+  uiManager: {fileID: 623663281}
+  questionSelection: {fileID: 623663280}
+  conversation_text:
+  - "\u03A3\u03C5\u03B3\u03C7\u03B1\u03C1\u03B7\u03C4\u03AE\u03C1\u03B9\u03B1 \u03C6\u03BF\u03B9\u03C4\u03B7\u03C4\u03AE
+    \u03AD\u03C6\u03C4\u03B1\u03C3\u03B5\u03C2 \u03C3\u03C4\u03B7\u03BD \u03BC\u03B5\u03B3\u03B1\u03BB\u03CD\u03C4\u03B5\u03C1\u03B7
+    \u03C0\u03B7\u03B3\u03AE \u03B3\u03BD\u03CE\u03C3\u03B7\u03C2 \u03B7 \u03BF\u03C0\u03BF\u03AF\u03B1
+    \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B7 \u03B2\u03B9\u03B2\u03BB\u03B9\u03BF\u03B8\u03AE\u03BA\u03B7
+    \u03C4\u03B7\u03C2 \u039A\u03BF\u03B6\u03AC\u03BD\u03B7\u03C2. \u0395\u03B4\u03CE
+    \u03BF\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03BD\u03B5\u03B9\u03C2 \u03C4\u03BF
+    \u03C4\u03B1\u03BE\u03AF\u03B4\u03B9 \u03C3\u03BF\u03C5 \u03BA\u03B1\u03B8\u03CE\u03C2
+    \u03AD\u03C7\u03B5\u03B9\u03C2 \u03BC\u03AC\u03B8\u03B5\u03B9 \u03C0\u03BF\u03BB\u03BB\u03AC
+    \u03C0\u03C1\u03AC\u03B3\u03BC\u03B1\u03C4\u03B1 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD
+    \u039A\u03BF\u03B6\u03AC\u03BD\u03B7 \u03BA\u03B1\u03B9 \u03AD\u03C7\u03B5\u03B9\u03C2
+    \u03B6\u03AE\u03C3\u03B5\u03B9 \u03BD\u03AD\u03B5\u03C2 \u03B5\u03BC\u03C0\u03B5\u03B9\u03C1\u03AF\u03B5\u03C2.
+    \u039A\u03B1\u03B9 \u03BD\u03B1 \u03B8\u03C5\u03BC\u03AC\u03C3\u03B1\u03B9...\u03B7
+    \u03B3\u03BD\u03CE\u03C3\u03B7 \u03B4\u03B5\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9
+    \u03C0\u03BF\u03C4\u03B5 \u03B1\u03C1\u03BA\u03B5\u03C4\u03AE!!!"
 --- !u!114 &997597325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75432,19 +75489,19 @@ MonoBehaviour:
   questionSelection: {fileID: 623663280}
   conversation_text:
   - "\u0391\u03B3\u03BD\u03C9\u03C3\u03C4\u03BF\u03C2: \u03A0\u03C9\u03C2 \u03BA\u03B1\u03B9
-    \u03B1\u03C0\u03BF \u03B5\u03B4\u03CE \u03BF \u03B4\u03C1\u03CC\u03BC\u03BF\u03C2
-    \u03C3\u03BF\u03C5 \u03C4\u03B1\u03BE\u03B9\u03B4\u03B9\u03CE\u03C4\u03B7?"
-  - "\u0395\u03C3\u03CD: \u039C\u03B9\u03B1 \u03C6\u03C9\u03C4\u03BF\u03B3\u03C1\u03B1\u03C6\u03AF\u03BF\u03B1
-    \u03C0\u03BF\u03C5 \u03BC\u03B9\u03BB\u03AC\u03B5\u03B9;;;;"
+    \u03B1\u03C0\u03CC \u03B5\u03B4\u03CE \u03BF \u03B4\u03C1\u03CC\u03BC\u03BF\u03C2
+    \u03C3\u03BF\u03C5 \u03C4\u03B1\u03BE\u03B9\u03B4\u03B9\u03CE\u03C4\u03B7;"
+  - "\u0395\u03C3\u03CD: \u039C\u03B9\u03B1 \u03C6\u03C9\u03C4\u03BF\u03B3\u03C1\u03B1\u03C6\u03AF\u03B1
+    \u03C0\u03BF\u03C5 \u03BC\u03B9\u03BB\u03AC\u03B5\u03B9;"
   - "\u0391\u03B3\u03BD\u03C9\u03C3\u03C4\u03BF\u03C2: \u03A0\u03BF\u03C5 \u03B5\u03AF\u03BD\u03B1\u03B9
     \u03C4\u03BF \u03C0\u03B5\u03C1\u03AF\u03B5\u03C1\u03B3\u03BF \u03C0\u03B1\u03BB\u03B9\u03BA\u03B1\u03C1\u03B9
     \u03BC\u03BF\u03C5; \u0393\u03B9\u03B1\u03C4\u03AF \u03B5\u03AF\u03C3\u03B1\u03B9
-    \u03B5\u03BE\u03C9 \u03B1\u03C0\u03BF \u03C4\u03BF \u03B1\u03C1\u03C7\u03BF\u03BD\u03C4\u03B9\u03BA\u03CC
-    \u03BC\u03BFy;"
-  - "\u0395\u03C3\u03CD: \u0395\u03BC\u03BC\u03BC...\u0395\u03BD\u03C4\u03AC\u03BE\u03B5\u03B9....\u039A\u03B1\u03BD\u03C9
+    \u03AD\u03BE\u03C9 \u03B1\u03C0\u03BF \u03C4\u03BF \u03B1\u03C1\u03C7\u03BF\u03BD\u03C4\u03B9\u03BA\u03CC
+    \u03BC\u03BF\u03C5;"
+  - "\u0395\u03C3\u03CD: \u0395\u03BC\u03BC\u03BC...\u0395\u03BD\u03C4\u03AC\u03BE\u03B5\u03B9....\u039A\u03AC\u03BD\u03C9
     \u03BC\u03B9\u03B1 \u03AD\u03C1\u03B5\u03C5\u03BD\u03B1 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD
     \u039A\u03BF\u03B6\u03AC\u03BD\u03B7 \u03BA\u03B1\u03B9 \u03AE\u03C1\u03B8\u03B1
-    \u03C3\u03B5 \u03B1\u03C5\u03C4\u03BF \u03C4\u03BF \u03B1\u03C1\u03C7\u03BF\u03BD\u03C4\u03B9\u03BA\u03BF
+    \u03C3\u03B5 \u03B1\u03C5\u03C4\u03BF \u03C4\u03BF \u03B1\u03C1\u03C7\u03BF\u03BD\u03C4\u03B9\u03BA\u03CC
     \u03C0\u03C1\u03BF\u03BA\u03B5\u03B9\u03BC\u03AD\u03BD\u03BF\u03C5 \u03BD\u03B1
     \u03C8\u03B1\u03BE\u03C9 \u03B3\u03B9\u03B1 \u03C4\u03BF\u03BD \u0393\u03B5\u03CE\u03C1\u03B3\u03B9\u03BF
     \u039B\u03B1\u03C3\u03C3\u03AC\u03BD\u03B7."
@@ -78769,7 +78826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -97.42827
+      value: -93.24
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -78999,6 +79056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tryAgain: {fileID: 2091133986}
   Quit: {fileID: 24376869}
+  player: {fileID: 1446783526}
 --- !u!1 &1503390099
 GameObject:
   m_ObjectHideFlags: 0
@@ -79618,6 +79676,10 @@ PrefabInstance:
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749909207340918127, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
@@ -95571,7 +95633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -101.56
+      value: -103.12
       objectReference: {fileID: 0}
     - target: {fileID: 7007083847059779782, guid: 6000c3fd7220dcd4c893a80684c7710a, type: 3}
       propertyPath: m_AnchoredPosition.y
