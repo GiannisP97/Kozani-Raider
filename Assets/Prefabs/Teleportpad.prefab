@@ -144,7 +144,10 @@ MonoBehaviour:
   teleporter: {fileID: 0}
   active: 0
   player: {fileID: 0}
-  camera: {fileID: 0}
+  camere: {fileID: 0}
+  audioClip:
+  - {fileID: 8300000, guid: 072de38be24565549bf480dd442da3e9, type: 3}
+  - {fileID: 8300000, guid: 709cf78b51e484d4db3b46a7977517c8, type: 3}
 --- !u!82 &5983956606966344997
 AudioSource:
   m_ObjectHideFlags: 0

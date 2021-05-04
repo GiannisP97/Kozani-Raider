@@ -222,6 +222,7 @@ public class characterController2D : MonoBehaviour
 
 		if(other.tag=="book"){
 			this.GetComponent<Books>().books++;
+			this.GetComponent<Books>().maxbooks++;
 			Destroy(other.gameObject);
 		}
 
@@ -236,7 +237,10 @@ public class characterController2D : MonoBehaviour
 			GetComponent<setText>().setmessage("Πάτα Ε για να αγοράσεις γνώσεις. Η επόμενη γνώση κοστίζει "+other.GetComponent<facts>().getcost());
 		}
 		if(other.GetComponent<Teleport>()!=null ){
-			GetComponent<Health>().health = GetComponent<Health>().numOfHearts;
+			if(GetComponent<Health>().health<GetComponent<Health>().numOfHearts){
+				GetComponent<Health>().health = GetComponent<Health>().numOfHearts;
+				other.GetComponent<Teleport>().playHealingAudio();
+			}
 			if(other.GetComponent<Teleport>().active){
 				GetComponent<setText>().setmessage("Πάτα Ε για τηλεμεταφορά");
 			}

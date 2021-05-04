@@ -7,7 +7,9 @@ public class Teleport : MonoBehaviour
     public Transform teleporter;
     public bool active = false;
     public GameObject player;
-    public GameObject camera;
+    public GameObject camere;
+
+    public AudioClip[] audioClip;
 
     private AudioSource audioSource;
     private IEnumerator routine;
@@ -30,6 +32,7 @@ public class Teleport : MonoBehaviour
 
             Debug.Log(player.GetComponent<characterController2D>().isTeleporting);
             player.GetComponent<characterController2D>().isTeleporting = true;
+            audioSource.clip = audioClip[0];
             audioSource.Play();
             player.GetComponent<characterController2D>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -37,6 +40,11 @@ public class Teleport : MonoBehaviour
             StartCoroutine(routine);
         }
         
+    }
+
+    public void playHealingAudio(){
+        audioSource.clip = audioClip[1];
+        audioSource.Play();
     }
 
 
@@ -50,7 +58,7 @@ public class Teleport : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         player.transform.position = teleporter.position;
-        camera.transform.position = new Vector3(teleporter.position.x,teleporter.position.y,-10);
+        camere.transform.position = new Vector3(teleporter.position.x,teleporter.position.y,-10);
         
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<characterController2D>().enabled = true;
