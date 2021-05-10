@@ -14,15 +14,22 @@ public class facts : MonoBehaviour
 
     private int counter = 7;
     private IEnumerator routine;
+    private IEnumerator typing_routine;
     private int cost = 1;
     private float distance;
+
+    private bool hasfinishedtyping = false;
     public bool finished = false;
+    public AudioClip sound;
+
+    private AudioSource audioSource;
 
     public bool inFact = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = sound;
     }
 
     // Update is called once per frame
@@ -90,12 +97,29 @@ public class facts : MonoBehaviour
 
         inFact = true;
         finished = false;
+
+        int Length = txt.Length/320;
+        for(int i=0;i<=Length;i++){
+            hasfinishedtyping = false;
+            text.text ="";
+            if(i==Length){
+                typing_routine = TypeText(txt.Substring(i*320));
+            }
+            else{
+                typing_routine = TypeText(txt.Substring(i*320,320));
+            }
+            
+            StartCoroutine(typing_routine);
+            yield return new WaitUntil(()=>hasfinishedtyping);
+        }
+        yield return new WaitForSeconds (2f);
+        /*
         if(txt.Length>320)
         {
             if(txt.Length>640){
                 text.text = txt.Substring(0,320);
                 print(txt.Length);
-
+                finished = false;
                 yield return new WaitForSeconds(1.5f);
                 yield return new WaitUntil(()=> finished);
                 
@@ -118,7 +142,7 @@ public class facts : MonoBehaviour
             
                 yield return new WaitForSeconds(1.5f);
 
-
+                finished = false;
                 yield return new WaitUntil(()=> finished);
                 finished = false;
                 text.text = txt.Substring(320);
@@ -131,10 +155,11 @@ public class facts : MonoBehaviour
         }
         else{
             text.text = txt;
-            
+            finished = false;
             yield return new WaitForSeconds(1.5f);
             yield return new WaitUntil(()=> finished);
         }
+        */
 
 
 
@@ -144,4 +169,16 @@ public class facts : MonoBehaviour
         dialogosPanel.SetActive(false);
 
      }
+
+    IEnumerator TypeText (string message) {
+		foreach (char letter in message.ToCharArray()) {
+			text.text += letter;
+			if (!audioSource.isPlaying)
+				audioSource.Play();
+				yield return 0;
+            yield return new WaitForSeconds (0.03f);
+		}
+        yield return new WaitForSeconds (1f);
+        hasfinishedtyping = true;
+	}
 }

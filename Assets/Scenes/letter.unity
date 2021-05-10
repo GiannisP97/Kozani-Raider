@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -575,6 +575,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   library: {fileID: 21300000, guid: 2a11b3f0a4987204a8bda6ebf19eea49, type: 3}
+  text:
+  - {fileID: 614362945}
+  - {fileID: 1120400946}
+  - {fileID: 1826624692}
   background: {fileID: 596613581}
 --- !u!1 &1469126390
 GameObject:

@@ -17,20 +17,29 @@ public class conversation : MonoBehaviour
 
     public questionSelection questionSelection;
 
+    public AudioClip sound;
+
+    private AudioSource audioSource;
+
 
     public string[] conversation_text;
 
     private float distance;
     private bool inconversation;
     private IEnumerator routine;
+    private IEnumerator typing_routine;
     private bool HasAnsweredCorrect = false;
 
     private DisplayMessage displayMessage;
+
+    private bool hasfinishedtyping = false;
     // Start is called before the first frame update
     void Start()
     {
         inconversation = false;
         displayMessage = GetComponent<DisplayMessage>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = sound;
     }
 
     // Update is called once per frame
@@ -60,8 +69,11 @@ public class conversation : MonoBehaviour
 
 
         for(int i=0;i<conversation_text.Length;i++){
-            conv_text.text = conversation_text[i];
-            yield return new WaitForSeconds(waitTime);
+            conv_text.text = "";
+            hasfinishedtyping = false;
+            typing_routine = TypeText(conversation_text[i]);
+            StartCoroutine(typing_routine);
+            yield return new WaitUntil(()=> hasfinishedtyping);
         }
 
         uiManager.QuestionUISetup(questionSelection.SelectQuestion());
@@ -80,5 +92,17 @@ public class conversation : MonoBehaviour
         dialogos_panel.SetActive(false);
         inconversation = false;
     }
+
+    IEnumerator TypeText (string message) {
+		foreach (char letter in message.ToCharArray()) {
+			conv_text.text += letter;
+			if (!audioSource.isPlaying)
+				audioSource.Play();
+				yield return 0;
+            yield return new WaitForSeconds (0.04f);
+		}
+        yield return new WaitForSeconds (2f);
+        hasfinishedtyping = true;
+	}
     
 }
